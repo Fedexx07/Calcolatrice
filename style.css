@@ -1,0 +1,29 @@
+button {
+    width: 60px;
+    height: 60px;
+    border-radius: 80px;   
+    border-style: hidden;
+    margin-right: 5px;
+    margin-top: 5px
+}
+
+.cancella {
+    background-color: p;
+}
+
+input {
+    width: 245px;
+    height: 40px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width: 1px;
+}
+
+body {
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+}
+  
