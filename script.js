@@ -5,6 +5,8 @@
     let count0 = 0;
     let count1 = 0;
 
+    var risultato = 0;
+
     function aggiungi(valore) {
       document.getElementById('display').value += valore;
     }
@@ -22,6 +24,7 @@
       valore2 = "";
       count0 = 0;
       count1 = 0;
+      risultato = 0;
     }
 
     function last() {
@@ -40,27 +43,37 @@
       }
     }
 
+  function calcola() {
+    valore2 = document.getElementById('display').value;
 
-    function calcola() {
-      valore2 = document.getElementById('display').value;
-      let risultato;
-      switch (operazione) {
-        case '+':
-          risultato = parseFloat(valore1) + parseFloat(valore2);
-          break;
-        case '-':
-          risultato = parseFloat(valore1) - parseFloat(valore2);
-          break;
-        case '*':
-          risultato = parseFloat(valore1) * parseFloat(valore2);
-          break;
-        case '/':
-          risultato = parseFloat(valore1) / parseFloat(valore2);
-          break;
-        default:
-          risultato = "Errore";
-      }
-      document.getElementById('display').value = risultato;
-      count0 = 0;
-      count1 = 0;
+    let num1 = parseFloat(valore1);
+    let num2 = parseFloat(valore2);
+
+    switch (operazione) {
+      case '+':
+        risultato = num1 + num2;
+        break;
+      case '-':
+        risultato = num1 - num2;
+        break;
+      case '*':
+        risultato = num1 * num2;
+        break;
+      case '/':
+        if (num2 === 0) {
+          risultato = "Errore (div 0)";
+        } else {
+          risultato = num1 / num2;
+        }
+        break;
+      default:
+        risultato = "Errore";
     }
+
+    document.getElementById('display').value = risultato;
+    valore1 = risultato.toString();
+    operazione = "";
+    valore2 = "";
+    count0 = 0;
+    count1 = 0;
+}
