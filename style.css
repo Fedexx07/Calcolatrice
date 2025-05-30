@@ -7,6 +7,7 @@ button {
     color: rgb(255, 255, 255);
     transition: all 1s cubic-bezier(.215, .61, .355, 1); 
     background-color: gray;
+    opacity: 90%;
 }
 
 .operazione {
@@ -38,7 +39,7 @@ body {
     flex-direction: column;
     background-color: black;
     zoom: 150%;
-    
+
 } 
 
 button:hover{

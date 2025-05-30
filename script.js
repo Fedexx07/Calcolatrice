@@ -1,38 +1,57 @@
-    let operazione = "";
-    let valore1 = "";
-    let valore2 = "";
+let operazione = "";    // tiene conto della operazione
+let valore1 = "";       // primo
+let valore2 = "";       // secondo
+let risultato = 0;      // risultato
+let waitingForSecondValue = false;  // flag per vedere se ha usato operazione
 
-    var risultato = 0;
+function aggiungi(valore) {
+  const display = document.getElementById('display');
+  if (waitingForSecondValue) {
 
-    function aggiungi(valore) {
-      document.getElementById('display').value += valore;
+    if (display.value !== "") {
+      calcola();
     }
+    waitingForSecondValue = false;
+    display.value = ""; 
+  }
 
-    function setOperazione(op) {
-      operazione = op;
-      valore1 = document.getElementById('display').value;
-      document.getElementById('display').value = "";
-    }
+  display.value += valore;
+}
 
-    function canc() {
-      document.getElementById('display').value = "";
-      operazione = "";
-      valore1 = "";
-      valore2 = "";
-      risultato = 0;
-    }
+function setOperazione(op) {
+  if (operazione && !waitingForSecondValue) {
+    calcola();
+  }
 
-    function last() {
-        let stringa = document.getElementById('display').value;
-        document.getElementById('display').value = stringa.substring(0, stringa.length - 1);
-    }
+  operazione = op;
+  valore1 = document.getElementById('display').value;
+  waitingForSecondValue = true;
+  document.getElementById('display').value = "";
+}
 
-  function calcola() {
-    valore2 = document.getElementById('display').value;
+function canc() {
+  document.getElementById('display').value = "";
+  operazione = "";
+  valore1 = "";
+  valore2 = "";
+  risultato = 0;
+  waitingForSecondValue = false;
+}
 
-    let num1 = parseFloat(valore1);
-    let num2 = parseFloat(valore2);
+function last() {
+  let stringa = document.getElementById('display').value;
+  document.getElementById('display').value = stringa.substring(0, stringa.length - 1);
+}
 
+function calcola() {
+  valore2 = document.getElementById('display').value;
+
+  let num1 = parseFloat(valore1);
+  let num2 = parseFloat(valore2);
+
+  if (isNaN(num1) || isNaN(num2)) {
+    risultato = "Errore";
+  } else {
     switch (operazione) {
       case '+':
         risultato = num1 + num2;
@@ -45,28 +64,38 @@
         break;
       case '/':
         if (num2 === 0) {
-          risultato = "Errore (div 0)";
+          risultato = "Errore";
         } else {
           risultato = num1 / num2;
         }
         break;
       default:
-        risultato = "Errore";
-    }
+        risultato = num2;
+    }  
+  }
 
-    document.getElementById('display').value = risultato;
-    valore1 = risultato.toString();
-    operazione = "";
-    valore2 = "";
+  if (typeof risultato === "number") {
+    if (risultato % 1 !== 0)
+      document.getElementById('display').value = risultato.toFixed(3).toString().replace('.', ',');
+    else
+      document.getElementById('display').value = risultato.toString().replace('.', ',');
+  } else {
+    document.getElementById('display').value = risultato;  // show error string as is
+  }
+  valore1 = risultato.toString();
+  operazione = "";
+  valore2 = "";
+  waitingForSecondValue = false;
+  risultato = 0;
 }
 
-  function root(){
-    try {
-      valore1 = document.getElementById('display').value;
-      risultato = Math.sqrt(parseFloat(valore1));
-      document.getElementById('display').value = risultato.toFixed(4);
-    } catch (error) {
-      console.error("Error calculating the root:", error);
-    }
-  
+
+function root() {
+  try {
+    valore1 = document.getElementById('display').value;
+    risultato = Math.sqrt(parseFloat(valore1));
+    document.getElementById('display').value = risultato.toFixed(3).replace('.', ',');
+  } catch (error) {
+    console.error("Error calculating the root:", error);
   }
+}
