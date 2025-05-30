@@ -4,7 +4,9 @@ button {
     border-radius: 80px;   
     border-style: hidden;
     margin: 5px 5px 0 0;
+    color: rgb(255, 255, 255);
     transition: all 1s cubic-bezier(.215, .61, .355, 1); 
+    background-color: gray;
 }
 
 .operazione {
@@ -27,13 +29,17 @@ input {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-width: 1px;
+    text-align-last: right;
 }
 
 body {
     display: flex; 
     align-items: center;
     flex-direction: column;
+    background-color: black;
 } 
+
+
   
 
 button:hover{

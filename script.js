@@ -1,9 +1,6 @@
     let operazione = "";
     let valore1 = "";
     let valore2 = "";
-    
-    let count0 = 0;
-    let count1 = 0;
 
     var risultato = 0;
 
@@ -22,25 +19,12 @@
       operazione = "";
       valore1 = "";
       valore2 = "";
-      count0 = 0;
-      count1 = 0;
       risultato = 0;
     }
 
     function last() {
         let stringa = document.getElementById('display').value;
         document.getElementById('display').value = stringa.substring(0, stringa.length - 1);
-    }
-
-    function parentesi(){
-      if(count0 === count1){
-        document.getElementById('display').value += '(';
-        count0++;
-      }
-      else{
-        document.getElementById('display').value += ')';
-        count1++;
-      }
     }
 
   function calcola() {
@@ -74,6 +58,15 @@
     valore1 = risultato.toString();
     operazione = "";
     valore2 = "";
-    count0 = 0;
-    count1 = 0;
 }
+
+  function root(){
+    try {
+      valore1 = document.getElementById('display').value;
+      risultato = Math.sqrt(parseFloat(valore1));
+      document.getElementById('display').value = risultato.toFixed(4);
+    } catch (error) {
+      console.error("Error calculating the root:", error);
+    }
+  
+  }
