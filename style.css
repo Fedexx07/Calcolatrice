@@ -37,10 +37,9 @@ body {
     align-items: center;
     flex-direction: column;
     background-color: black;
+    zoom: 150%;
+    
 } 
-
-
-  
 
 button:hover{
     scale: 1.1;
